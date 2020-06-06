@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta1
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+  - image: basebuilder
+    docker:
+      dockerfile: Dockerfile.base
+  # These containers are using builders (like golang + tools) + src.
+  - image: my-app
+    docker:
+      dockerfile: Dockerfile
+      buildArgs:
+        BASEBUILDER: "{{.IMAGE_REPO}}/basebuilder:{{.IMAGE_TAG}}"

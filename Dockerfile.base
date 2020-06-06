@@ -1,0 +1,2 @@
+FROM golang:1.13-buster
+COPY tools.sh /build-tools/tools.sh
